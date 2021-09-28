@@ -1,7 +1,12 @@
 package br.elizangela.steps;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.pt.Dado;
@@ -20,79 +25,117 @@ public class CadastrarUsuarioSteps {
 		driver.get("http://advantageonlineshopping.com/#/register");
 	}
 
-	@Quando("^informo o nome do usuario \"([^\"]*)\"$")
-	public void informoONomeDoUsuario(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^preencho o campo username \"([^\"]*)\"$")
+	public void preenchoOCampoUsername(String arg1) throws Throwable {
+		
+	   WebDriverWait wait = new WebDriverWait(driver, 60);
+	   wait.until(ExpectedConditions.elementToBeClickable(By.name("usernameRegisterPage")));
+		driver.findElement(By.name("usernameRegisterPage")).sendKeys(arg1);
 	}
 
-	@Quando("^informo o email \"([^\"]*)\"$")
-	public void informoOEmail(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^preencho o campo email \"([^\"]*)\"$")
+	public void preenchoOCampoEmail(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("emailRegisterPage")));
+			driver.findElement(By.name("emailRegisterPage")).sendKeys(arg1);
 	}
 
-	@Quando("^informo a senha \"([^\"]*)\"$")
-	public void informoASenha(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^preencho o campo password \"([^\"]*)\"$")
+	public void preenchoOCampoPassword(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("passwordRegisterPage")));
+			driver.findElement(By.name("passwordRegisterPage")).sendKeys(arg1);
+
 	}
 
-	@Quando("^confirmo a senha \"([^\"]*)\"$")
-	public void confirmoASenha(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^confirmo a password \"([^\"]*)\"$")
+	public void confirmoAPassword(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("confirm_passwordRegisterPage")));
+			driver.findElement(By.name("confirm_passwordRegisterPage")).sendKeys(arg1);
 	}
 
-	@Quando("^informo meu primeiro nome \"([^\"]*)\"$")
-	public void informoMeuPrimeiroNome(String arg1) throws Throwable {
-	    throw new PendingException();
+
+	@Quando("^preencho o campo first name \"([^\"]*)\"$")
+	public void preenchoOCampoFirstName(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("first_nameRegisterPage")));
+			driver.findElement(By.name("first_nameRegisterPage")).sendKeys(arg1);
+		
 	}
 
-	@Quando("^informo meu ultimo nome \"([^\"]*)\"$")
-	public void informoMeuUltimoNome(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^preencho o campo last name \"([^\"]*)\"$")
+	public void preenchoOCampoLastName(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("last_nameRegisterPage")));
+			driver.findElement(By.name("last_nameRegisterPage")).sendKeys(arg1);
+		
 	}
 
-	@Quando("^informo meu numero de telefone \"([^\"]*)\"$")
-	public void informoMeuNumeroDeTelefone(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^preencho o campo phone number \"([^\"]*)\"$")
+	public void preenchoOCampoPhoneNumber(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("phone_numberRegisterPage")));
+			driver.findElement(By.name("phone_numberRegisterPage")).sendKeys(arg1);
+		
 	}
 
-	@Quando("^seleciono o pais \"([^\"]*)\"$")
-	public void selecionoOPais(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^seleciono o country \"([^\"]*)\"$")
+	public void selecionoOCountry(String arg1) throws Throwable {
+		
+		WebElement element = driver.findElement(By.name("countryListboxRegisterPage"));
+		Select combo = new Select(element);
+		combo.selectByVisibleText("Brazil");
+
 	}
 
-	@Quando("^informo a cidade \"([^\"]*)\"$")
-	public void informoACidade(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^preencho o campo city \"([^\"]*)\"$")
+	public void preenchoOCampoCity(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("cityRegisterPage")));
+			driver.findElement(By.name("cityRegisterPage")).sendKeys(arg1);
 	}
 
-	@Quando("^informo o endereco \"([^\"]*)\"$")
-	public void informoOEndereco(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^preencho o campo address \"([^\"]*)\"$")
+	public void preenchoOCampoAddress(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("addressRegisterPage")));
+			driver.findElement(By.name("addressRegisterPage")).sendKeys(arg1);
 	}
 
-	@Quando("^informo o estado de \"([^\"]*)\"$")
-	public void informoOEstadoDe(String arg1) throws Throwable {
-	    throw new PendingException();
+	@Quando("^preencho o campo state \"([^\"]*)\"$")
+	public void preenchoOCampoState(String arg1) throws Throwable {
+		
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("state_/_province_/_regionRegisterPage")));
+			driver.findElement(By.name("state_/_province_/_regionRegisterPage")).sendKeys(arg1);
+		
 	}
 
-	@Quando("^informo o CEP \"([^\"]*)\"$")
-	public void informoOCEP(String arg1) throws Throwable {
-	    throw new PendingException();
-	}
+	@Quando("^preencho o campo postal code \"([^\"]*)\"$")
+	public void preenchoOCampoPostalCode(String arg1) throws Throwable {
 
-	@Quando("^desmarco a opcao de receber ofertas exclusivas$")
-	public void desmarcoAOpcaoDeReceberOfertasExclusivas() throws Throwable {
-	    throw new PendingException();
-	}
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		   wait.until(ExpectedConditions.elementToBeClickable(By.name("postal_codeRegisterPage")));
+			driver.findElement(By.name("postal_codeRegisterPage")).sendKeys(arg1);
+	       	}
 
 	@Quando("^aceito os termos de servico$")
 	public void aceitoOsTermosDeServico() throws Throwable {
-	    throw new PendingException();
+		driver.findElement(By.name("i_agree")).click();
 	}
 
 	@Quando("^clico no botao \"([^\"]*)\"$")
 	public void clicoNoBotao(String arg1) throws Throwable {
-	    throw new PendingException();
+	    driver.findElement(By.id("register_btnundefined")).click();
 	}
 
 	@Entao("^o cadastro e adicionado com sucesso$")

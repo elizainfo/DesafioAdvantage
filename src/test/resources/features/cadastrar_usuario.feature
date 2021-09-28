@@ -6,21 +6,24 @@ Como usuario
 Quero realizar meu cadastro com sucesso
 Para utilizar o sistema
 
-Cenario: Cadastrar novo usuario
+Esquema do Cenario: Cadastrar novo usuario
 	Dado que estou acessando a pagina de register
-	Quando informo o nome do usuario "eliztest"
-	E informo o email "eliztest@gmail.com"
-	E informo a senha "Test@Advant1"
-	E confirmo a senha "Test@Advant1"
-	E informo meu primeiro nome "Test"
-	E informo meu ultimo nome "Advantage"
-	E informo meu numero de telefone "1199999-9999"
-	E seleciono o pais "Brazil"
-	E informo a cidade "Itapevi"
-	E informo o endereco "Rua Test, 1"
-	E informo o estado de "Sao Paulo"
-	E informo o CEP "09999-000"
-	E desmarco a opcao de receber ofertas exclusivas
+	Quando preencho o campo username "<username>"
+	E preencho o campo email "<email>"
+	E preencho o campo password "<password>"
+	E confirmo a password "<password>"
+	E preencho o campo first name "<firstname>"
+	E preencho o campo last name "<lastname>"
+	E preencho o campo phone number "<phonenumber>"
+	E seleciono o country "<country>"
+	E preencho o campo city "<city>"
+	E preencho o campo address "<address>"
+	E preencho o campo state "<state>"
+	E preencho o campo postal code "<postalcode>"
 	E aceito os termos de servico
 	E clico no botao "Register"
 	Entao o cadastro e adicionado com sucesso
+	
+Exemplos:
+|	username	|	email								|	password			|	firstname	|	lastname	|	phonenumber		|	country	|	city		|	address			|	state			|	postalcode	|	
+|	Usertest	|	usertest@gmail.com	|	Test@Advant1	|	Test			|	Advantage	|	1199999-9999	|	Brazil	|	Cidade	|	Rua Test, 1	|	Sao Paulo	|	09999-000		|

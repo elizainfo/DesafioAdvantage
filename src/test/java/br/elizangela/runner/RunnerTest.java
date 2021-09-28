@@ -11,7 +11,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(
 		plugin = {"pretty"}, //,"html:target/report-html", "json:target/report-json"},
 		monochrome = true,
-		features = "src\\test\\resources\\features\\cadastrar_usuario.feature",
+		features = "src/test/resources/features/cadastrar_usuario.feature",
 		glue = "br.elizangela.steps",
 		//tags = "~@ignore",
 		//tags = {"@tipo1","@tipo2"},
