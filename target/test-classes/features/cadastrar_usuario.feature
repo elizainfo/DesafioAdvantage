@@ -6,6 +6,8 @@ Como usuario
 Quero realizar meu cadastro com sucesso
 Para utilizar o sistema
 
+#Contexto:
+@ignore
 Esquema do Cenario: Cadastrar novo usuario
 	Dado que estou acessando a pagina de register
 	Quando preencho o campo username "<username>"
@@ -24,6 +26,29 @@ Esquema do Cenario: Cadastrar novo usuario
 	E clico no botao "Register"
 	Entao o cadastro e adicionado com sucesso
 	
-Exemplos:
+	Exemplos:
 |	username	|	email								|	password			|	firstname	|	lastname	|	phonenumber		|	country	|	city		|	address			|	state			|	postalcode	|	
 |	Usertest	|	usertest@gmail.com	|	Test@Advant1	|	Test			|	Advantage	|	1199999-9999	|	Brazil	|	Cidade	|	Rua Test, 1	|	Sao Paulo	|	09999-000		|
+	
+Esquema do Cenario: Cadastrar usuario existente
+	Dado que estou acessando a pagina de register
+	Quando preencho o campo username "<username>"
+	E preencho o campo email "<email>"
+	E preencho o campo password "<password>"
+	E confirmo a password "<password>"
+	E preencho o campo first name "<firstname>"
+	E preencho o campo last name "<lastname>"
+	E preencho o campo phone number "<phonenumber>"
+	E seleciono o country "<country>"
+	E preencho o campo city "<city>"
+	E preencho o campo address "<address>"
+	E preencho o campo state "<state>"
+	E preencho o campo postal code "<postalcode>"
+	E aceito os termos de servico
+	E clico no botao "Register"
+	Entao o sistema apresenta a mensagem User name already exists
+	
+Exemplos:
+Exemplos:
+|username|email							|password			|firstname|lastname	|phonenumber	|country|city	|	address			|state		|postalcode|
+|Usertest|usertest@gmail.com|Test@Advant1|Test			|Advantage|1199999-9999	|Brazil	|Cidade|Rua Test, 1	|Sao Paulo|09999-000|

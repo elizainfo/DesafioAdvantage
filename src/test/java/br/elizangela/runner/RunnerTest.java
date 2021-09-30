@@ -13,7 +13,7 @@ import cucumber.api.junit.Cucumber;
 		monochrome = true,
 		features = "src/test/resources/features/cadastrar_usuario.feature",
 		glue = "br.elizangela.steps",
-		//tags = "~@ignore",
+		tags = "~@ignore",
 		//tags = {"@tipo1","@tipo2"},
 		//tags = {"@tipo1,@tipo2"},
 		snippets = SnippetType.CAMELCASE,
