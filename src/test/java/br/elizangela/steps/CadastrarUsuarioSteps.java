@@ -1,7 +1,13 @@
 package br.elizangela.steps;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,10 +15,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import cucumber.api.PendingException;
-import cucumber.api.java.pt.Dado;
-import cucumber.api.java.pt.Entao;
-import cucumber.api.java.pt.Quando;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
+import io.cucumber.java.PendingException;
+import io.cucumber.java.Scenario;
+import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.Entao;
+import io.cucumber.java.pt.Quando;
 
 public class CadastrarUsuarioSteps {
 
@@ -89,10 +98,12 @@ public class CadastrarUsuarioSteps {
 	@Quando("^seleciono o country \"([^\"]*)\"$")
 	public void selecionoOCountry(String arg1) throws Throwable {
 
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.elementToBeClickable(By.name("countryListboxRegisterPage")));
 		WebElement element = driver.findElement(By.name("countryListboxRegisterPage"));
 		Select combo = new Select(element);
 		combo.selectByVisibleText("Brazil");
-
+		
 	}
 
 	@Quando("^preencho o campo city \"([^\"]*)\"$")
@@ -140,13 +151,33 @@ public class CadastrarUsuarioSteps {
 
 	@Entao("^o cadastro e adicionado com sucesso$")
 	public void oCadastroEAdicionadoComSucesso() throws Throwable {
-		throw new PendingException();
+		//throw new PendingException();
 	}
 	
 	@Entao("^o sistema apresenta a mensagem User name already exists$")
 	public void oSistemaApresentaAMensagemUserNameAlreadyExists() throws Throwable {
 		String texto = driver.findElement(By.xpath("//label[normalize-space()='User name already exists']")).getText();
 		   Assert.assertEquals("User name already exists", texto);
+	}
+	
+	@Before
+	public void inicio() {
+		System.out.println("Iniciar");
+	}
+	
+	@After(order = 1)
+	public void screenshot(Scenario cenario) {
+		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@After(order = 0)
+	public void fecharBrowser() {
+		driver.quit();
 	}
 
 }
