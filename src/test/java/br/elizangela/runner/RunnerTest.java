@@ -13,13 +13,14 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 @CucumberOptions(
 		plugin = {"pretty"},
 		monochrome = true,
-		features = {"src/test/resources/features/"},
+		features = {"src/test/resources/features/login.feature"},
 		glue = {"br.elizangela.steps"},
 		tags = "not @ignore",
 		//tags = {"@tipo1","@tipo2"},
 		//tags = {"@tipo1,@tipo2"},
 		snippets = SnippetType.CAMELCASE,
-		dryRun = false
+		dryRun = false,
+		strict = true
 		)
 
 public class RunnerTest {

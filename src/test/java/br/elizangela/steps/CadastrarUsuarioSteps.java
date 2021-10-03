@@ -165,19 +165,19 @@ public class CadastrarUsuarioSteps {
 		System.out.println("Iniciar");
 	}
 	
-	@After(order = 1)
-	public void screenshot(Scenario cenario) {
-		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		try {
-			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+//	@After(order = 1)
+//	public void screenshot(Scenario cenario) {
+//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//		try {
+//			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	
-	@After(order = 0)
-	public void fecharBrowser() {
-		driver.quit();
-	}
+//	@After(order = 0)
+//	public void fecharBrowser() {
+//		driver.quit();
+//	}
 
 }
