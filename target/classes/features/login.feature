@@ -11,8 +11,7 @@ Funcionalidade: Login
     E clico no botao User
     Quando no pop-up informo o username "<username>"
     E informo a password "<password>"
-    E clico no botao SingIn
-    Entao o login é efetivado com sucesso
+    Então clico no botao SingIn
 
 Exemplos: 
       | username  		| password		 |

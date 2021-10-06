@@ -1,8 +1,5 @@
 package br.elizangela.steps;
 
-import java.security.spec.ECField;
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -32,44 +29,45 @@ public class LoginSteps {
 	}
 	
 	@Dado("clico no botao User")
-	public void clicoNoBotaoUser() {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("menuUser")));
-		driver.findElement(By.id("menuUser")).click();
+	public void clicoNoBotaoUser() throws InterruptedException {
+		
+		Thread.sleep(10000);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 1000);
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("menuUser")));
+		dsl.clicarBotao("menuUser");
 	}
 
 	@Quando("no pop-up informo o username {string}")
 	public void noPopUpInformoOUsername(String string) {
+		
 		WebDriverWait wait = new WebDriverWait(driver, 100);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("username")));
+		
 		dsl.escreverPorName("username", string);
-		Assert.assertEquals(string, driver.findElement(By.name("username")).getAttribute("value"));
+		Assert.assertEquals(string, dsl.obterValorCampoPorName("username"));
+		
 		
 	}
 	@Quando("informo a password {string}")
 	public void informoAPassword(String string) {
 		dsl.escreverPorName("password", string);
-		Assert.assertEquals(string, driver.findElement(By.name("password")).getAttribute("value"));
+		Assert.assertEquals(string, dsl.obterValorCampoPorName("password"));
 		
 	}
 
-	@Quando("clico no botao SingIn")
-	public void clicoNoBotaoSingIn() {
-		WebDriverWait wait = new WebDriverWait(driver, 60);	
-		wait.until(ExpectedConditions.elementToBeSelected(By.id("sign_in_btnundefined")));
-		driver.findElement(By.id("sign_in_btnundefined")).click();
-				//.xpath("//button[normalize-space()='SIGN IN']")).click();
+	@Entao("clico no botao SingIn")
+	public void clicoNoBotaoSingIn() throws InterruptedException {
+		
+		Thread.sleep(1000);
+		
+		WebDriverWait wait = new WebDriverWait(driver, 1000);	
+		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("sign_in_btnundefined")));
+		
+		dsl.clicarBotao("sign_in_btnundefined");
 		
 	}
 	
-	@Entao("o login é efetivado com sucesso")
-	public void oLoginÉEfetivadoComSucesso(String login) {
-		
-		login =	driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']")).getText();
-		Assert.assertEquals(login, driver.findElement(By.xpath("//span[@class='hi-user containMiniTitle ng-binding']")).getAttribute(login));
-		//span[@class='hi-user containMiniTitle ng-binding']
-	}
-
-
+	
 
 }
