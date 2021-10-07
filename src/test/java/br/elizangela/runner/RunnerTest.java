@@ -13,7 +13,7 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 @CucumberOptions(
 		plugin = {"pretty"},
 		monochrome = true,
-		features = {"src/test/resources/features/login.feature"},
+		features = {"src/test/resources/features/cadastrar_usuario.feature"},
 		glue = {"br.elizangela.steps"},
 		tags = "not @ignore",
 		//tags = {"@tipo1","@tipo2"},
