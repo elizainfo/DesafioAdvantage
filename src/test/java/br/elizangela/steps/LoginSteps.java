@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import br.elizangela.pages.DSL;
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -16,15 +18,38 @@ public class LoginSteps {
 	
 	private WebDriver driver;
 	private DSL dsl;
+	
+	@Before
+	public void inicializaBrowser() {
+		System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		//driver.get("https://advantageonlineshopping.com/#");
+		dsl = new DSL(driver);
+	}
+	
+//	@After(order = 1)
+//	public void screenshot(Scenario cenario) {
+//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//		try {
+//			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
+	@After
+	public void fecharBrowser() {
+		driver.quit();
+	}
 
 
 	@Dado("que estou na pagina inicial")
 	public void queEstouNaPaginaInicial() {
 		
-		System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+		//System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
+		//driver = new FirefoxDriver();
 		driver.get("https://advantageonlineshopping.com/#/");
-		dsl = new DSL(driver);
+		//dsl = new DSL(driver);
 		
 	}
 	

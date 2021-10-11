@@ -21,11 +21,34 @@ public class CadastrarUsuarioSteps {
 	private WebDriver driver;
 	private DSL dsl;
 
+	@Before
+	public void inicializaBrowser() {
+		System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		driver.get("https://advantageonlineshopping.com/#");
+		dsl = new DSL(driver);
+	}
+	
+//	@After(order = 1)
+//	public void screenshot(Scenario cenario) {
+//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//		try {
+//			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
+	@After
+	public void fecharBrowser() {
+		driver.quit();
+	}
+
 	@Dado("^que estou acessando a pagina de register$")
 	public void queEstouAcessandoAPaginaDeRegister() throws Throwable {
 
-		System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
+		//System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
+		//driver = new FirefoxDriver();
 		driver.get("http://advantageonlineshopping.com/#/register");
 		dsl = new DSL(driver);
 	}
@@ -150,15 +173,10 @@ public class CadastrarUsuarioSteps {
 	 driver.findElement(By.name("i_agree")).click();
 	}
 
-	@Quando("^clico no botao \"([^\"]*)\"$")
+	@Entao("^clico no botao \"([^\"]*)\"$")
 	public void clicoNoBotao(String arg1) throws Throwable {
 		dsl.clicarBotao("register_btnundefined");
 		//driver.findElement(By.id("register_btnundefined")).click();
-	}
-
-	@Entao("^o cadastro e adicionado com sucesso$")
-	public void oCadastroEAdicionadoComSucesso() throws Throwable {
-		//throw new PendingException();
 	}
 	
 	@Entao("^o sistema apresenta a mensagem User name already exists$")
@@ -167,24 +185,4 @@ public class CadastrarUsuarioSteps {
 		   Assert.assertEquals("User name already exists", texto);
 	}
 	
-	@Before
-	public void inicio() {
-		System.out.println("Iniciar");
-	}
-	
-//	@After(order = 1)
-//	public void screenshot(Scenario cenario) {
-//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//		try {
-//			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
-	@After(order = 0)
-	public void fecharBrowser() {
-		driver.quit();
-	}
-
 }

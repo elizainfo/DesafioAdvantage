@@ -21,8 +21,7 @@ Esquema do Cenario: Cadastrar novo usuario
 	E preencho o campo state "<state>"
 	E preencho o campo postal code "<postalcode>"
 	E aceito os termos de servico
-	E clico no botao "Register"
-	Entao o cadastro e adicionado com sucesso
+	Então clico no botao "Register"
 	
 	Exemplos:
 |	username	|	email								|	password			|	firstname	|	lastname	|	phonenumber		|	country	|	city		|	address			|	state			|	postalcode	|	
