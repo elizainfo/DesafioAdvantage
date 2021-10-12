@@ -6,6 +6,11 @@ Como usuario
 Quero realizar meu cadastro com sucesso
 Para utilizar o sistema
 
+Contexto:
+	Dado que acesso a pagina inicial do sistema
+	Quando clico no icone de usuario
+	Entao clico na opção Create New Account
+
 Esquema do Cenario: Cadastrar novo usuario
 	Dado que estou acessando a pagina de register
 	Quando preencho o campo username "<username>"
@@ -27,7 +32,7 @@ Esquema do Cenario: Cadastrar novo usuario
 |	username	|	email								|	password			|	firstname	|	lastname	|	phonenumber		|	country	|	city		|	address			|	state			|	postalcode	|	
 |	Usertest	|	usertest@gmail.com	|	Test@Advant1	|	Test			|	Advantage	|	1199999-9999	|	Brazil	|	Cidade	|	Rua Test, 1	|	Sao Paulo	|	09999-000		|
 
-#Contexto:
+#@ignore
 Esquema do Cenario: Não deverá Cadastrar usuario existente
 	Dado que estou acessando a pagina de register
 	Quando preencho o campo username "<username>"
