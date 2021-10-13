@@ -3,9 +3,13 @@ package br.elizangela.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.cucumber.java.After;
+import io.cucumber.java.Before;
 
 public class DSL {
 	
@@ -15,6 +19,28 @@ public class DSL {
 	public DSL(WebDriver driver) {
 		super();
 		this.driver = driver;
+	}
+	
+	@Before
+	public void inicializaBrowser() {
+		System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
+		driver = new FirefoxDriver();
+		//driver.get("https://advantageonlineshopping.com/#");
+	}
+	
+//	@After(order = 1)
+//	public void screenshot(Scenario cenario) {
+//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//		try {
+//			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+//	}
+	
+	@After
+	public void fecharBrowser() {
+		driver.quit();
 	}
 
 	public void escreverPorId(String id_campo, String texto) {

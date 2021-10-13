@@ -19,48 +19,24 @@ public class LoginSteps {
 	private WebDriver driver;
 	private DSL dsl;
 	
-	@Before
-	public void inicializaBrowser() {
-		System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		//driver.get("https://advantageonlineshopping.com/#");
-		dsl = new DSL(driver);
-	}
-	
-//	@After(order = 1)
-//	public void screenshot(Scenario cenario) {
-//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//		try {
-//			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
-	@After
-	public void fecharBrowser() {
-		driver.quit();
-	}
-
-
 	@Dado("que estou na pagina inicial")
 	public void queEstouNaPaginaInicial() {
 		
 		//System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
-		//driver = new FirefoxDriver();
+		driver = new FirefoxDriver();
 		driver.get("https://advantageonlineshopping.com/#/");
-		//dsl = new DSL(driver);
 		
 	}
 	
 	@Dado("clico no botao User")
 	public void clicoNoBotaoUser() throws InterruptedException {
 		
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
 		
-		WebDriverWait wait = new WebDriverWait(driver, 1000);
+		WebDriverWait wait = new WebDriverWait(driver, 10000);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("menuUser")));
-		dsl.clicarBotao("menuUser");
+		driver.findElement(By.id("menuUser")).click();
+		//dsl.clicarBotao("menuUser");
 	}
 
 	@Quando("no pop-up informo o username {string}")

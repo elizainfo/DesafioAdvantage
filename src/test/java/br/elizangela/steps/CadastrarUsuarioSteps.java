@@ -16,13 +16,6 @@ import io.cucumber.java.pt.Quando;
 
 public class CadastrarUsuarioSteps {
 
-//	public static void main(String[] args) throws IOException{
-//		File file = new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
-//		FileInputStream inputStream = new FileInputStream(file);
-//		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
-//		XSSFSheet sheet = wb.getSheet("Usuario_Data");
-//	}
-
 	private WebDriver driver;
 	private DSL dsl;
 
