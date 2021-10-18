@@ -85,128 +85,234 @@ public class CadastrarUsuarioSteps {
 	}
 
 	@Quando("^preencho o campo username \"([^\"]*)\"$")
-	public void preenchoOCampoUsername(String arg1) throws Throwable {
+	public void preenchoOCampoUsername(String username) throws Throwable {
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("usernameRegisterPage")));
 
-		// driver.findElement(By.name("usernameRegisterPage")).sendKeys(this.main(getRow(1).getCell(1).getStringCellValue()));
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+				
+		XSSFRow row0 = sheet.getRow(1);
+		XSSFCell cell0 = row0.getCell(0);
+		username = cell0.getStringCellValue();
+		
+		page.setUsername(username);
+		
+	}
+
+	@Quando("^preencho o campo email \"([^\"]*)\"$")
+	public void preenchoOCampoEmail(String email) throws Throwable {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.elementToBeClickable(By.name("emailRegisterPage")));
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+				
+		XSSFRow row1 = sheet.getRow(1);
+		XSSFCell cell1 = row1.getCell(1);
+		email = cell1.getStringCellValue();
+		
+		page.setEmail(email);
+		
+	}
+
+	@Quando("^preencho o campo password \"([^\"]*)\"$")
+	public void preenchoOCampoPassword(String pass) throws Throwable {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.elementToBeClickable(By.name("passwordRegisterPage")));
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+				
+		XSSFRow row2 = sheet.getRow(1);
+		XSSFCell cell2 = row2.getCell(2);
+		pass = cell2.getStringCellValue();
+		
+		page.setPassword(pass);
+
+	}
+
+	@Quando("^confirmo a password \"([^\"]*)\"$")
+	public void confirmoAPassword(String cpass) throws Throwable {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.elementToBeClickable(By.name("confirm_passwordRegisterPage")));
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+				
+		XSSFRow row2 = sheet.getRow(1);
+		XSSFCell cell2 = row2.getCell(2);
+		cpass = cell2.getStringCellValue();
+		
+		page.setConfirmaPassword(cpass);
+	}
+
+	@Quando("^preencho o campo first name \"([^\"]*)\"$")
+	public void preenchoOCampoFirstName(String firstname) throws Throwable {
+
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.until(ExpectedConditions.elementToBeClickable(By.name("first_nameRegisterPage")));
+		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
 		FileInputStream inputStream = new FileInputStream(file);
 		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
 		XSSFSheet sheet = wb.getSheet("Usuario_Data");
 		
-		//Leitura de dado contido em linha e coluna específica
-		
-		XSSFRow row0 = sheet.getRow(1);
-		XSSFCell cell0 = row0.getCell(0);
-		arg1 = cell0.getStringCellValue();
-		
-		page.setUsername(arg1);
-		
-		//dsl.escreverPorName("usernameRegisterPage", arg1);
-	}
-
-	@Quando("^preencho o campo email \"([^\"]*)\"$")
-	public void preenchoOCampoEmail(String arg1) throws Throwable {
-
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.elementToBeClickable(By.name("emailRegisterPage")));
-		dsl.escreverPorName("emailRegisterPage", arg1);
-	}
-
-	@Quando("^preencho o campo password \"([^\"]*)\"$")
-	public void preenchoOCampoPassword(String arg1) throws Throwable {
-
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.elementToBeClickable(By.name("passwordRegisterPage")));
-		dsl.escreverPorName("passwordRegisterPage", arg1);
-
-	}
-
-	@Quando("^confirmo a password \"([^\"]*)\"$")
-	public void confirmoAPassword(String arg1) throws Throwable {
-
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.elementToBeClickable(By.name("confirm_passwordRegisterPage")));
-		dsl.escreverPorName("confirm_passwordRegisterPage", arg1);
-	}
-
-	@Quando("^preencho o campo first name \"([^\"]*)\"$")
-	public void preenchoOCampoFirstName(String arg1) throws Throwable {
-
-		WebDriverWait wait = new WebDriverWait(driver, 60);
-		wait.until(ExpectedConditions.elementToBeClickable(By.name("first_nameRegisterPage")));
-		dsl.escreverPorName("first_nameRegisterPage", arg1);
+		XSSFRow row3 = sheet.getRow(1);
+		XSSFCell cell3 = row3.getCell(3);
+		firstname = cell3.getStringCellValue();
+				
+		page.setFirstName(firstname);
 
 	}
 
 	@Quando("^preencho o campo last name \"([^\"]*)\"$")
-	public void preenchoOCampoLastName(String arg1) throws Throwable {
+	public void preenchoOCampoLastName(String lastname) throws Throwable {
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("last_nameRegisterPage")));
-		dsl.escreverPorName("last_nameRegisterPage", arg1);
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+		
+		XSSFRow row4 = sheet.getRow(1);
+		XSSFCell cell4 = row4.getCell(4);
+		lastname = cell4.getStringCellValue();
+	
+		page.setLastName(lastname);
 
 	}
 
 	@Quando("^preencho o campo phone number \"([^\"]*)\"$")
-	public void preenchoOCampoPhoneNumber(String arg1) throws Throwable {
+	public void preenchoOCampoPhoneNumber(String phone) throws Throwable {
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("phone_numberRegisterPage")));
-		dsl.escreverPorName("phone_numberRegisterPage", arg1);
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+		
+		XSSFRow row5= sheet.getRow(1);
+		XSSFCell cell5 = row5.getCell(5);
+		phone = cell5.getStringCellValue();
+		
+		page.setPhoneNumber(phone);
 
 	}
 
 	@Quando("^seleciono o country \"([^\"]*)\"$")
-	public void selecionoOCountry(String arg1) throws Throwable {
+	public void selecionoOCountry(String country) throws Throwable {
 
 		WebDriverWait wait = new WebDriverWait(driver, 100);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("countryListboxRegisterPage")));
 
-		dsl.selecionarComboPorName("countryListboxRegisterPage", "Brazil");
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+		
+		XSSFRow row6= sheet.getRow(1);
+		XSSFCell cell6 = row6.getCell(6);
+		country = cell6.getStringCellValue();
+				
+		page.setCountry(country);
+		
 		Assert.assertEquals("Brazil", dsl.obterValorCombo("countryListboxRegisterPage"));
 	}
 
 	@Quando("^preencho o campo city \"([^\"]*)\"$")
-	public void preenchoOCampoCity(String arg1) throws Throwable {
+	public void preenchoOCampoCity(String city) throws Throwable {
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("cityRegisterPage")));
-		dsl.escreverPorName("cityRegisterPage", arg1);
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+		
+		XSSFRow row7= sheet.getRow(1);
+		XSSFCell cell7 = row7.getCell(7);
+		city = cell7.getStringCellValue();
+				
+		page.setCity(city);
 	}
 
 	@Quando("^preencho o campo address \"([^\"]*)\"$")
-	public void preenchoOCampoAddress(String arg1) throws Throwable {
+	public void preenchoOCampoAddress(String adress) throws Throwable {
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("addressRegisterPage")));
-		dsl.escreverPorName("addressRegisterPage", arg1);
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+		
+		XSSFRow row8 = sheet.getRow(1);
+		XSSFCell cell = row8.getCell(8);
+		adress= cell.getStringCellValue();
+				
+		page.setAdress(adress);
 	}
 
 	@Quando("^preencho o campo state \"([^\"]*)\"$")
-	public void preenchoOCampoState(String arg1) throws Throwable {
+	public void preenchoOCampoState(String state) throws Throwable {
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("state_/_province_/_regionRegisterPage")));
-		dsl.escreverPorName("state_/_province_/_regionRegisterPage", arg1);
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+		
+		XSSFRow row9 = sheet.getRow(1);
+		XSSFCell cell9 = row9.getCell(9);
+		state = cell9.getStringCellValue();
+		
+		page.setState(state);
 
 	}
 
 	@Quando("^preencho o campo postal code \"([^\"]*)\"$")
-	public void preenchoOCampoPostalCode(String arg1) throws Throwable {
+	public void preenchoOCampoPostalCode(String postalcode) throws Throwable {
 
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("postal_codeRegisterPage")));
-		dsl.escreverPorName("postal_codeRegisterPage", arg1);
-		// driver.findElement(By.name("postal_codeRegisterPage")).sendKeys(arg1);
+		
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+		
+		XSSFRow row10 = sheet.getRow(1);
+		XSSFCell cell10 = row10.getCell(10);
+		postalcode = cell10.getStringCellValue();
+		
+		page.setPostalCode(postalcode);
+		
 	}
 
 	@Quando("^aceito os termos de servico$")
 	public void aceitoOsTermosDeServico() throws Throwable {
 		dsl.clicarCheckPorName("i_agree");
-		// driver.findElement(By.name("i_agree")).click();
 		Assert.assertTrue(dsl.isCheckMarcado("i_agree"));
 	}
 

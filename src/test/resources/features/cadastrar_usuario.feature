@@ -32,7 +32,7 @@ Esquema do Cenario: Cadastrar novo usuario
 |	username	|	email								|	password			|	firstname	|	lastname	|	phonenumber		|	country	|	city		|	address			|	state			|	postalcode	|	
 |	Usertest	|	usertest@gmail.com	|	Test@Advant1	|	Test			|	Advantage	|	1199999-9999	|	Brazil	|	Cidade	|	Rua Test, 1	|	Sao Paulo	|	09999-000		|
 
-#@ignore
+@ignore
 Esquema do Cenario: Não deverá Cadastrar usuario existente
 	Dado que estou acessando a pagina de register
 	Quando preencho o campo username "<username>"
