@@ -1,5 +1,12 @@
 package br.elizangela.steps;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,6 +14,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.elizangela.pages.CadastroPage;
 import br.elizangela.pages.DSL;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -18,12 +26,14 @@ public class CadastrarUsuarioSteps {
 
 	private WebDriver driver;
 	private DSL dsl;
+	private CadastroPage page;
 
 	@Before
 	public void inicializaBrowser() {
 		System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		dsl = new DSL(driver);
+		page = new CadastroPage(driver);
 	}
 
 //	@After(order = 1)
@@ -81,8 +91,20 @@ public class CadastrarUsuarioSteps {
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("usernameRegisterPage")));
 
 		// driver.findElement(By.name("usernameRegisterPage")).sendKeys(this.main(getRow(1).getCell(1).getStringCellValue()));
-
-		dsl.escreverPorName("usernameRegisterPage", arg1);
+		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
+		FileInputStream inputStream = new FileInputStream(file);
+		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
+		XSSFSheet sheet = wb.getSheet("Usuario_Data");
+		
+		//Leitura de dado contido em linha e coluna específica
+		
+		XSSFRow row0 = sheet.getRow(1);
+		XSSFCell cell0 = row0.getCell(0);
+		arg1 = cell0.getStringCellValue();
+		
+		page.setUsername(arg1);
+		
+		//dsl.escreverPorName("usernameRegisterPage", arg1);
 	}
 
 	@Quando("^preencho o campo email \"([^\"]*)\"$")
