@@ -1,5 +1,7 @@
 package br.elizangela.steps;
 
+import static br.elizangela.core.DriverFactory.getDriver;
+
 import java.io.File;
 import java.io.FileInputStream;
 
@@ -9,13 +11,12 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import br.elizangela.core.DSL;
+import br.elizangela.core.DriverFactory;
 import br.elizangela.pages.CadastroPage;
-import br.elizangela.pages.DSL;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.pt.Dado;
@@ -24,16 +25,14 @@ import io.cucumber.java.pt.Quando;
 
 public class CadastrarUsuarioSteps {
 
-	private WebDriver driver;
 	private DSL dsl;
 	private CadastroPage page;
 
 	@Before
 	public void inicializaBrowser() {
 		System.setProperty("webdriver.firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		dsl = new DSL(driver);
-		page = new CadastroPage(driver);
+		dsl = new DSL();
+		page = new CadastroPage();
 	}
 
 //	@After(order = 1)
@@ -45,15 +44,15 @@ public class CadastrarUsuarioSteps {
 //			e.printStackTrace();
 //		}
 //	}
-
+	
 	@After
-	public void fecharBrowser() {
-		driver.quit();
+	public void finaliza() {
+		DriverFactory.killDriver();
 	}
 
 	@Dado("que acesso a pagina inicial do sistema")
 	public void queAcessoAPaginaInicialDoSistema() {
-		driver.get("https://advantageonlineshopping.com/#");
+		getDriver().get("https://advantageonlineshopping.com/#");
 	}
 
 	@Quando("clico no icone de usuario")
@@ -61,7 +60,7 @@ public class CadastrarUsuarioSteps {
 
 		Thread.sleep(10000);
 
-		WebDriverWait wait = new WebDriverWait(driver, 1000);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 1000);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.id("menuUser")));
 
 		dsl.clicarBotao("menuUser");
@@ -71,7 +70,7 @@ public class CadastrarUsuarioSteps {
 	@Entao("clico na opção Create New Account")
 	public void clicoNaOpçãoCreateNewAccount() {
 
-		WebDriverWait wait = new WebDriverWait(driver, 1000);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 1000);
 		wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.linkText("CREATE NEW ACCOUNT")));
 
 		dsl.clicarLink("CREATE NEW ACCOUNT");
@@ -81,13 +80,13 @@ public class CadastrarUsuarioSteps {
 	@Dado("^que estou acessando a pagina de register$")
 	public void queEstouAcessandoAPaginaDeRegister() throws Throwable {
 
-		driver.get("http://advantageonlineshopping.com/#/register");
+		getDriver().get("http://advantageonlineshopping.com/#/register");
 	}
 
 	@Quando("^preencho o campo username \"([^\"]*)\"$")
 	public void preenchoOCampoUsername(String username) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("usernameRegisterPage")));
 
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -106,7 +105,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo email \"([^\"]*)\"$")
 	public void preenchoOCampoEmail(String email) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("emailRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -125,7 +124,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo password \"([^\"]*)\"$")
 	public void preenchoOCampoPassword(String pass) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("passwordRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -144,7 +143,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^confirmo a password \"([^\"]*)\"$")
 	public void confirmoAPassword(String cpass) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("confirm_passwordRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -162,7 +161,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo first name \"([^\"]*)\"$")
 	public void preenchoOCampoFirstName(String firstname) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("first_nameRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -181,7 +180,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo last name \"([^\"]*)\"$")
 	public void preenchoOCampoLastName(String lastname) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("last_nameRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -200,7 +199,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo phone number \"([^\"]*)\"$")
 	public void preenchoOCampoPhoneNumber(String phone) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("phone_numberRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -219,7 +218,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^seleciono o country \"([^\"]*)\"$")
 	public void selecionoOCountry(String country) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 100);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 100);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("countryListboxRegisterPage")));
 
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -239,7 +238,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo city \"([^\"]*)\"$")
 	public void preenchoOCampoCity(String city) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("cityRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -257,7 +256,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo address \"([^\"]*)\"$")
 	public void preenchoOCampoAddress(String adress) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("addressRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -275,7 +274,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo state \"([^\"]*)\"$")
 	public void preenchoOCampoState(String state) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("state_/_province_/_regionRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");
@@ -294,7 +293,7 @@ public class CadastrarUsuarioSteps {
 	@Quando("^preencho o campo postal code \"([^\"]*)\"$")
 	public void preenchoOCampoPostalCode(String postalcode) throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(getDriver(), 60);
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("postal_codeRegisterPage")));
 		
 		File file =    new File("C:\\Workspaces\\DesafioAdvantage\\src\\test\\resources\\DataAdvantage.xlsx");

@@ -1,21 +1,13 @@
 package br.elizangela.pages;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.WebDriver;
+import br.elizangela.core.DSL;
 
 public class CadastroPage {
 	
 	private DSL dsl;
 	
-	public CadastroPage(WebDriver driver) {
-		dsl = new DSL(driver);
+	public CadastroPage() {
+		dsl = new DSL();
 	}
 	
 	public void setUsername(String username){
