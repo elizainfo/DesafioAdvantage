@@ -24,16 +24,6 @@ public class LoginSteps {
 		dsl = new DSL();
 	}
 
-//	@After(order = 1)
-//	public void screenshot(Scenario cenario) {
-//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//		try {
-//			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-	
 	@After
 	public void finaliza() {
 		DriverFactory.killDriver();

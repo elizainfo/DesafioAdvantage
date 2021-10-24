@@ -15,10 +15,8 @@ import io.cucumber.junit.CucumberOptions.SnippetType;
 		monochrome = true,
 		features = {"src/test/resources/features/"},
 		glue = {"br.elizangela.steps"},
-		tags = "not @ignore",
-		//tags = {"@tipo1","@tipo2"},
-		//tags = {"@tipo1,@tipo2"},
 		snippets = SnippetType.CAMELCASE,
+		tags = "not @ignore",
 		dryRun = false,
 		strict = true
 		)

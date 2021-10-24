@@ -7,27 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 public class DSL {
-	
-	
-//	@Before
-//	public void inicializaBrowser() {
-//		System.setProperty("webgetDriver().firefox.driver", "C:\\Workspaces\\DesafioAdvantage\\drivers\\geckogetDriver().exe");
-//	}
-//	
-////	@After(order = 1)
-////	public void screenshot(Scenario cenario) {
-////		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-////		try {
-////			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
-////		} catch (IOException e) {
-////			e.printStackTrace();
-////		}
-////	}
-//	
-//	@After
-//	public void fecharBrowser() {
-//		DriverFactory.killDriver();
-//	}
+		
 
 	public void escreverPorId(String id_campo, String texto) {
 		getDriver().findElement(By.id(id_campo)).clear();

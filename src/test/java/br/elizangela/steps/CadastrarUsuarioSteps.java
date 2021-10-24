@@ -4,13 +4,17 @@ import static br.elizangela.core.DriverFactory.getDriver;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -19,6 +23,7 @@ import br.elizangela.core.DriverFactory;
 import br.elizangela.pages.CadastroPage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
 import io.cucumber.java.pt.Dado;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
@@ -35,15 +40,15 @@ public class CadastrarUsuarioSteps {
 		page = new CadastroPage();
 	}
 
-//	@After(order = 1)
-//	public void screenshot(Scenario cenario) {
-//		File file = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//		try {
-//			FileUtils.copyFile(file,new File("target/screenshots/name.jpg"));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	@After(order = 1)
+	public void screenshot(Scenario cenario) {
+		File file = ((TakesScreenshot)getDriver()).getScreenshotAs(OutputType.FILE);
+		try {
+			FileUtils.copyFile(file,new File("target/screenshots/"+cenario.getId()+".jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	@After
 	public void finaliza() {
